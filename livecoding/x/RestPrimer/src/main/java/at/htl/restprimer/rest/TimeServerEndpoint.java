@@ -5,11 +5,10 @@ import javax.ws.rs.Path;
 import java.time.LocalDateTime;
 
 @Path("time")
-public class TimeServerResource {
+public class TimeServerEndpoint {
 
     @GET
     public String time() {
         return "Time: " + LocalDateTime.now();
     }
-
 }
