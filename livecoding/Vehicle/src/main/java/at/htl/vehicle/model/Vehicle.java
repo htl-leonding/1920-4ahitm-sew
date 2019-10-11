@@ -1,5 +1,8 @@
 package at.htl.vehicle.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Vehicle {
     private String brand;
     private String type;
