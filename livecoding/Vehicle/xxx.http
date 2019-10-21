@@ -1,0 +1,21 @@
+GET http://localhost:8080/vehicle/api/vehicle/42
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+DELETE http://localhost:8080/vehicle/api/vehicle/42
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST http://localhost:8080/vehicle/api/vehicle
+Content-Type: application/json
+
+{
+  "brand": "Opel 43",
+  "type": "Commodore"
+}
+
+###
