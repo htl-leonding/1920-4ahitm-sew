@@ -4,10 +4,9 @@ import at.htl.person.model.Person;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.*;
 import java.lang.annotation.Repeatable;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -30,18 +29,12 @@ public class PersonEndpoint {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response create(Person person) {
-        System.out.println("---");
+    @Transactional
+    public Response create(Person person, @Context UriInfo uriInfo) {
         Person p = em.merge(person);
-        Response created = null;
-        try {
-            created = Response
-                    .created(new URI("http://localhost:8080/person/api/person" + p.getId()))
-                    .build();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-        return created;
+        Long id = p.getId();
+        URI uri = uriInfo.getAbsolutePathBuilder().path("/" + id).build();
+        return Response.created(uri).build();
     }
 
 }
