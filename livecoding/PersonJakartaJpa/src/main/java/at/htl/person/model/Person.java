@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "MY_PERSON")
+@NamedQuery(name="Person.findAll", query = "select p from Person p")
 public class Person {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,8 +15,9 @@ public class Person {
     public Person() {
     }
 
-    public Person(String name) {
+    public Person(String name, String city) {
         this.name = name;
+        this.city = city;
     }
 
     public String getName() {
