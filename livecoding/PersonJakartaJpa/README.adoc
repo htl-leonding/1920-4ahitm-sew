@@ -1,4 +1,4 @@
-# PersonJakartaJpa
+= PersonJakartaJpa
 ifndef::sourcedir[:sourcedir: src/main/java]
 :Author:    Thomas Stütz
 :Email:     <t.stuetz@htl-leonding.ac.at>
@@ -14,7 +14,7 @@ Version: {revision}
 :icons: font
 
 
-## Rest-Endpoint refactored
+== Rest-Endpoint refactored
 
 [source, java]
 .create a person
@@ -25,7 +25,7 @@ include::{sourcedir}/at/htl/person/rest/PersonEndpoint.java[tags=post,indent=0]
 <1> Don't forget @Transactional
 <2> Das UriInfo - Objekt enthält die Metadaten des Servers und des Requests
 
-## Rest-Client in IntelliJ erstellt
+== Rest-Client in IntelliJ erstellt
 
 . Verzeichnis rest-requests erstellt
 . <Rechte Maustaste> - New - HTTP Request
@@ -50,4 +50,4 @@ Content-Type: application/json
 ###
 ----
 
-## README in Asciidoctor erstellt
+== README in Asciidoctor erstellt
