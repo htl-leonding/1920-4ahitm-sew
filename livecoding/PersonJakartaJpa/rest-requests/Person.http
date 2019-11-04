@@ -1,5 +1,4 @@
 ### Send GET request for all persons
-
 GET http://localhost:8080/person/api/person
 Accept: application/json
 

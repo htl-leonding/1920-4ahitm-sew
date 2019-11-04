@@ -26,15 +26,16 @@ public class PersonEndpoint {
                 .getResultList();
     }
 
+    // tag::post[]
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Transactional
-    public Response create(Person person, @Context UriInfo uriInfo) {
+    @Transactional // <1>
+    public Response create(Person person, @Context UriInfo uriInfo) { // <2>
         Person p = em.merge(person);
         Long id = p.getId();
         URI uri = uriInfo.getAbsolutePathBuilder().path("/" + id).build();
         return Response.created(uri).build();
     }
-
+    // end::post[]
 }
