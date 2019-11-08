@@ -4,10 +4,18 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "MY_PERSON")
-@NamedQuery(name="Person.findAll", query = "select p from Person p")
+@NamedQueries({
+        @NamedQuery(
+                name = "Person.findAll",
+                query = "select p from Person p"),
+        @NamedQuery(
+                name = "Person.findByName",
+                query = "select p from Person p where p.name = :NAME")
+})
 public class Person {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String city;
@@ -47,6 +55,6 @@ public class Person {
 
     @Override
     public String toString() {
-        return String.format("%d: %s (%s)",id,name,city);
+        return String.format("%d: %s (%s)", id, name, city);
     }
 }

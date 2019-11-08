@@ -3,7 +3,9 @@ package at.htl.person.rest;
 import at.htl.person.model.Person;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
@@ -18,6 +20,10 @@ public class PersonEndpoint {
     @PersistenceContext
     EntityManager em;
 
+    /**
+     * list all persons
+     * @return
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Person> findAll() {
@@ -26,6 +32,12 @@ public class PersonEndpoint {
                 .getResultList();
     }
 
+    /**
+     * creating a new person on database
+     * @param person
+     * @param uriInfo
+     * @return
+     */
     // tag::post[]
     @POST
     @Produces(MediaType.APPLICATION_JSON)
@@ -37,8 +49,37 @@ public class PersonEndpoint {
         URI uri = uriInfo.getAbsolutePathBuilder().path("/" + id).build();
         return Response
                 .created(uri)
-                .header("greetings","hallo_du")
+                .entity(p)
                 .build();
     }
     // end::post[]
+
+    /**
+     * FormParam ... html-form -> submit
+     * QueryParam ... http://myurl:8080/person/api/person?name=Susi
+     * PathParam ... http://myurl:8080/person/api/person/4
+     * @return
+     */
+    @GET
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Person getPersonById(@PathParam("id") long id) {
+        return em.find(Person.class, id);
+    }
+
+    @GET
+    @Path("name")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Person getPersonByName(@QueryParam("name") String name) {
+        try {
+            TypedQuery<Person> query = em
+                    .createNamedQuery("Person.findByName", Person.class)
+                    .setParameter("NAME", name);
+            Person p = query.getSingleResult();
+            return p;
+        } catch (NoResultException e) {
+            throw new WebApplicationException(Response.Status.BAD_GATEWAY);
+        }
+    }
+
 }
