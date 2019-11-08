@@ -1,6 +1,7 @@
 package at.htl.person.model;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "MY_PERSON")
@@ -12,6 +13,7 @@ import javax.persistence.*;
                 name = "Person.findByName",
                 query = "select p from Person p where p.name = :NAME")
 })
+@XmlRootElement
 public class Person {
 
     @Id

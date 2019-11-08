@@ -17,3 +17,12 @@ GET http://localhost:8080/person/api/person/name?name=susi
 Accept: application/json
 
 ###
+POST http://localhost:8080/person/api/person/jsondemo
+Content-Type: application/json
+
+{
+  "name": "Sepp",
+  "city": "New York"
+}
+
+###

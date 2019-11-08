@@ -2,6 +2,8 @@ package at.htl.person.rest;
 
 import at.htl.person.model.Person;
 
+import javax.json.Json;
+import javax.json.JsonObject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -82,4 +84,12 @@ public class PersonEndpoint {
         }
     }
 
+    @POST
+    @Path("jsondemo")
+    @Produces(MediaType.TEXT_PLAIN)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response getJsonObject(JsonObject json) {
+        String text = json.getString("city");
+        return Response.ok(text).build();
+    }
 }
