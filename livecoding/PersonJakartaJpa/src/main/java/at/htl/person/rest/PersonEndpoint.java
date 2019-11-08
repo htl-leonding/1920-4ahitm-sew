@@ -35,7 +35,10 @@ public class PersonEndpoint {
         Person p = em.merge(person);
         Long id = p.getId();
         URI uri = uriInfo.getAbsolutePathBuilder().path("/" + id).build();
-        return Response.created(uri).build();
+        return Response
+                .created(uri)
+                .header("greetings","hallo_du")
+                .build();
     }
     // end::post[]
 }
