@@ -1,6 +1,12 @@
 ### Send GET request for all persons
 GET http://localhost:8080/person/api/person
+Accept: application/xml
+
+###
+
+GET http://localhost:8080/person/api/person
 Accept: application/json
+
 
 ### Send POST request with json body
 POST http://localhost:8080/person/api/person

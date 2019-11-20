@@ -27,7 +27,7 @@ public class PersonEndpoint {
      * @return
      */
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public List<Person> findAll() {
         return em
                 .createNamedQuery("Person.findAll", Person.class)
