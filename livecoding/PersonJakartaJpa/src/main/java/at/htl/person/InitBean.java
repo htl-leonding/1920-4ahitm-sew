@@ -26,7 +26,7 @@ public class InitBean {
 
         em.persist(new Hobby("Mountain-Biken"));
         em.persist(new Hobby("Lesen"));
-        em.persist(new Hobby("Bingen"));
+        em.persist(new Hobby("BingenX"));
         em.persist(new Hobby("Ski fahren"));
 
         em.persist(new PerformsHobby(
@@ -42,6 +42,11 @@ public class InitBean {
                 em.find(Person.class, 1L)
         ));
 
+        Person chris = new Person("Chrisi", "Ansfelden");
+        Hobby hobbyVomChrisi = new Hobby("Bingen");
+        PerformsHobby pf = new PerformsHobby(hobbyVomChrisi, chris);
+        chris = em.merge(chris);
+        System.out.println(chris);
     }
 
 }

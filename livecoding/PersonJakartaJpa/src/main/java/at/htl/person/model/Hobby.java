@@ -2,6 +2,7 @@ package at.htl.person.model;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.List;
 
 @Entity
 @Table(name = "MY_HOBBY")
@@ -12,7 +13,7 @@ public class Hobby {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String decription;
+    private String description;
 
     public Hobby() {
     }
@@ -37,12 +38,12 @@ public class Hobby {
         this.name = name;
     }
 
-    public String getDecription() {
-        return decription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDecription(String decription) {
-        this.decription = decription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override

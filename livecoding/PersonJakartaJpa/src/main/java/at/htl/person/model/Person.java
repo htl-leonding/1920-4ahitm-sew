@@ -2,6 +2,8 @@ package at.htl.person.model;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.LinkedList;
+import java.util.List;
 
 @Entity
 @Table(name = "MY_PERSON")
@@ -15,6 +17,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 })
 @XmlRootElement
 public class Person {
+
+    @OneToMany(mappedBy = "person", cascade = {CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
+    private List<PerformsHobby> hobbies = new LinkedList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,5 +63,9 @@ public class Person {
     @Override
     public String toString() {
         return String.format("%d: %s (%s)", id, name, city);
+    }
+
+    public void addHobby(PerformsHobby performsHobby) {
+        hobbies.add(performsHobby);
     }
 }

@@ -22,10 +22,10 @@ public class PerformsHobby {
     private
     Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Person person;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Hobby hobby;
 
     public PerformsHobby() {
@@ -33,7 +33,7 @@ public class PerformsHobby {
 
     public PerformsHobby(Hobby hobby, Person person) {
         this.hobby = hobby;
-        this.person = person;
+        setPerson(person);
     }
 
 
@@ -51,6 +51,7 @@ public class PerformsHobby {
 
     public void setPerson(Person person) {
         this.person = person;
+        person.addHobby(this);
     }
 
     public Hobby getHobby() {
