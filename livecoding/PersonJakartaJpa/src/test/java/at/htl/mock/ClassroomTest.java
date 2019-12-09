@@ -23,6 +23,7 @@ public class ClassroomTest {
         classroom.addX("IrfanView");
 
         // assert - then
-        verify(classroom.students, times(1)).add("IrfanView");
+        verify(classroom.students, times(1))
+                .add("IrfanView");
     }
 }
