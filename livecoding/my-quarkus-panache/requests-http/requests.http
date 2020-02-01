@@ -1,3 +1,23 @@
 GET localhost:8080/hello
 
 ###
+
+POST localhost:8080/person
+Content-Type: application/json
+
+{
+  "name": "Django Aigner",
+  "birth": "2001-09-27",
+  "status": "ALIVE"
+
+}
+
+###
+
+GET localhost:8080/person
+
+###
+
+GET localhost:8080/openapi
+
+###
